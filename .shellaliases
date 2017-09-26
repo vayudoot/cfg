@@ -1,0 +1,24 @@
+alias c='clear'
+alias dovm='ssh root@165.227.20.222'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+
+alias to.downloads='cd ${MYDOWNLOADS}'
+alias to.dropbox='cd ~/Dropbox'
+alias to.docs='cd ${MYDOCUMENTS}'
+alias to.code='cd ${MYCODE}'
+
+# recursive dos2unix in current directory
+alias dos2lf='dos2unix `find ./ -type f`'
+
+# Flush the DNS on Mac
+alias dnsflush='dscacheutil -flushcache'
+
+# Show network connections
+# Often useful to prefix with SUDO to see more system level network usage
+alias network.connections='lsof -l -i +L -R -V'
+alias network.established='lsof -l -i +L -R -V | grep ESTABLISHED'
+alias network.internalip="ifconfig en0 | egrep -o '([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)'"
+alias network.externalip='curl -s http://checkip.dyndns.org/ | sed "s/[a-zA-Z<>/ :]//g"'
+

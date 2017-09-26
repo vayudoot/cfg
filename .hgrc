@@ -1,0 +1,60 @@
+#
+
+%include /auto/hg/tintri/hgrc.default
+
+[ui]
+username = ntrivedi
+editor = vi
+ignore = ~/.hgignore
+
+[extensions]
+# enable color extension
+color =
+# enable extdiff extension (Extended Diff)
+hgext.extdiff =
+pager =
+record =
+crecord = $HOME/.hgext/crecord
+prompt = $HOME/.hgext/hg-prompt/prompt.py
+
+[extdiff]
+# configure extended diff to use colordiff (requires colordiff installed in your system)
+cmd.sdiff = sdiff
+opts.sdiff = -w200 --ignore-all-space --expand-tabs
+cmd.vdiff = vimdiff
+
+[color]
+# configure colors for each possible hg status
+status.modified = blue bold
+status.added = green bold
+status.removed = red bold
+status.deleted = cyan bold
+status.unknown = magenta bold
+status.ignored = white bold
+# and for hg diff output also
+diff.diffline = bold
+diff.extended = cyan bold
+diff.file_a = red bold
+diff.file_b = green bold
+diff.hunk = magenta
+diff.deleted = red
+diff.inserted = green
+diff.changed = white
+diff.trailingwhitespace = bold red_background
+
+[pager]
+pager = LESS='FRX' less
+attend = log outgoing diff glog in blog incoming status qdiff blame annotate pdiff br pr
+
+[alias]
+killitwithfire = revert --no-backup --all
+b = branch
+uptb = !hg up $1; hg tupdate -b.
+tb = tupdate -b.
+lastm = !hg log -r "children(ancestor(default, $1)) and merge()" --template "{rev}\n"
+pr = log -v -p -r $1 
+br = backout -r $1
+lg = log  --template "\x1B[31m{node|short} \x1B[32m{desc|firstline|fill68}(\x1B[33m{date(date, '%y/%m/%d')}) \x1B[34m{author}\x1B[0m\n"
+lgb = log  --template "\x1B[31m{node|short}[{branch}] \x1B[32m{desc|firstline|fill68}(\x1B[33m{date(date, '%y/%m/%d')}) \x1B[34m{author}\x1B[0m\n"
+put = !hg pull; hg update; hg tupdate -b.
+ob = out -b.
