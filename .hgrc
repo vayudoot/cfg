@@ -1,7 +1,5 @@
 #
 
-%include /auto/hg/tintri/hgrc.default
-
 [ui]
 username = ntrivedi
 editor = vi

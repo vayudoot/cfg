@@ -30,8 +30,6 @@ export PKG_CONFIG_PATH
 alias c='clear'
 alias ls='ls -G'
 alias ll='ls -alFG'
-alias vm='ssh ntrivedi-vm.tintri.com'
-alias af='ssh root@tafs19'
 
 #exports
 PS1='[\u@mac \W]\$ '
