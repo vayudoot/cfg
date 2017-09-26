@@ -1,8 +1,8 @@
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/ntrivedi/.oh-my-zsh
 
-source $HOME/.dotfiles/.shellfn
-source $HOME/.dotfiles/.shellaliases
+source $HOME/.shellfn
+source $HOME/.shellaliases
 
 alias virtualenv3='~/Library/Python/3.6/bin/virtualenv'
 
