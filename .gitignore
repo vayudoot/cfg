@@ -89,3 +89,4 @@ node_modules
 .vim/temp/*
 .vim/.netrwhist
 .cfg
+.cfg
