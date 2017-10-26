@@ -4,6 +4,9 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 
+# for top level dotfiles config
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+
 alias to.downloads='cd ${MYDOWNLOADS}'
 alias to.dropbox='cd ~/Dropbox'
 alias to.docs='cd ${MYDOCUMENTS}'
