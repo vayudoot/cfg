@@ -11,6 +11,7 @@ set nocompatible " get out of horrible vi-compatible mode
 set t_Co=256
 syntax on " syntax highlighting on
 highlight ColorColumn ctermbg=101
+set term=xterm
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " General

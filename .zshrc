@@ -64,3 +64,10 @@ if [ ! $TERM = dumb ]; then
      # list of plugins from zsh I use
 fi
 
+prompt_context() {
+  if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
+    prompt_segment black default "%(!.%{%F{yellow}%}.)$USER"
+  fi
+}
+
+RPROMPT=""
