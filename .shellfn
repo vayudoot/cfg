@@ -4,6 +4,7 @@ function matrix() {
 }
 
 brew-essentials() {
+  brew install cheat
   brew install cloc
   brew install cmake
   brew install coreutils

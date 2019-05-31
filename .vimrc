@@ -5,16 +5,81 @@ set nocompatible    " get out of horrible vi-compatible mode
 set termguicolors
 set term=xterm-256color
 set t_Co=256
-syntax on           " syntax highlighting on
 highlight ColorColumn ctermbg=101
 
 """"""""""""""""""""
-" Solarized stuff
+" Pathogen         #
+""""""""""""""""""""
+execute pathogen#infect()
+"call pathogen#runtime_append_all_bundles()
+
+""""""""""""""""""""
+" Plug             #
+""""""""""""""""""""
+" Install vim-plug if we don't already have it
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin('~/.vim/plugged')
+Plug 'ajh17/spacegray.vim'
+"Plug 'andviro/flake8-vim'
+Plug 'cocopon/iceberg.vim'
+Plug 'derekwyatt/vim-protodef'
+Plug 'ervandew/supertab'
+Plug 'fatih/vim-go'
+Plug 'kablamo/vim-git-log'
+Plug 'kevinhui/vim-docker-tools'
+Plug 'Konfekt/FastFold'
+Plug 'majutsushi/tagbar'
+Plug 'scrooloose/syntastic'
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'Shougo/neocomplete.vim'
+"Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'tpope/vim-git', { 'for': 'git' }
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-unimpaired'
+Plug 'Townk/vim-autoclose'
+"Plug 'Valloric/YouCompleteMe'
+Plug 'vim-scripts/indentpython.vim'
+"Plug 'vim-scripts/Conque-GDB'
+Plug 'wesQ3/vim-windowswap'
+Plug 'LucHermitte/lh-vim-lib'
+"Plug 'LucHermitte/VimFold4C'
+"Plug 'WolfgangMehner/c-support'
+call plug#end()
+
+""""""""""""""""""""
+" Solarized stuff  #
 """"""""""""""""""""
 let g:solarized_termcolors = 256
 let g:solarized_termtrans = 1
 set background=dark
-colorscheme solarized8_flat
+"colorscheme solarized8_flat
+
+"silent! colorscheme slate
+silent! colorscheme iceberg
+" Transparent background
+function! s:transparent() abort
+  highlight Normal ctermbg=NONE guibg=NONE
+  highlight NonText ctermbg=NONE guibg=NONE
+  highlight EndOfBuffer ctermbg=NONE guibg=NONE
+  highlight Folded ctermbg=NONE guibg=NONE
+  highlight LineNr ctermbg=NONE guibg=NONE
+  highlight CursorLineNr ctermbg=NONE guibg=NONE
+  highlight SpecialKey ctermbg=NONE guibg=NONE
+  highlight ALEErrorSign ctermbg=NONE guibg=NONE
+  highlight ALEWarningSign ctermbg=NONE guibg=NONE
+  highlight GitGutterAdd ctermbg=NONE guibg=NONE
+  highlight GitGutterChange ctermbg=NONE guibg=NONE
+  highlight GitGutterChangeDelete ctermbg=NONE guibg=NONE
+  highlight GitGutterDelete ctermbg=NONE guibg=NONE
+endfunction
+call s:transparent()
+set secure
 
 """"""""""""""""""""
 " General
@@ -74,11 +139,13 @@ set softtabstop=4   " unify
 set shiftwidth=4    " unify
 set tabstop=4       " real tabs should be 4, but they will show with set list on
 set copyindent      " but above all -- follow the conventions laid before us
-filetype plugin indent on " load filetype plugins and indent settings
+filetype plugin on " load filetype plugins and indent settings
+set omnifunc=syntaxcomplete#Complete
 
 """"""""""""""""""""
 " Text Formatting/Layout
 """"""""""""""""""""
+syntax on           " syntax highlighting on
 set fo=tcrq         " See Help (complex)
 set shiftround      " when at 3 spaces, and I hit > ... go to 4, not 5
 set expandtab       " no real tabs!
@@ -88,10 +155,42 @@ set smartcase       " if there are caps, go case-sensitive
 set completeopt=menu,longest,preview " improve the way autocomplete works
 " set nowrap        " do not wrap line
 " set cursorcolumn  " show the current column
+set cursorline
 
 """"""""""""""""""""
 " Folding
 """"""""""""""""""""
+"" fastfold
+nmap zuz <Plug>(FastFoldUpdate)
+"set foldenable    " Turn on folding
+set foldmethod=syntax " Fold on the marker
+let g:fastfold_savehook = 1
+let g:fastfold_fold_command_suffixes =  ['x','X','a','A','o','O','c','C']
+let g:fastfold_fold_movement_commands = [']z', '[z', 'zj', 'zk']
+let g:markdown_folding = 1
+let g:tex_fold_enabled = 1
+let g:vimsyn_folding = 'af'
+let g:xml_syntax_folding = 1
+let g:javaScript_fold = 1
+let g:sh_fold_enabled= 7
+let g:ruby_fold = 1
+let g:perl_fold = 1
+let g:perl_fold_blocks = 1
+let g:r_syntax_folding = 1
+let g:rust_fold = 1
+let g:php_folding = 1
+"" VimFold4C
+"let g:fold_options = {
+"   \ 'fallback_method' : { 'line_threshold' : 2000, 'method' : 'indent' },
+"   \ 'fold_blank': 0,
+"   \ 'fold_includes': 1,
+"   \ 'max_foldline_length': 'win',
+"   \ 'merge_comments' : 0,
+"   \ 'show_if_and_else': 1,
+"   \ 'strip_namespaces': 1,
+"   \ 'strip_template_arguments': 1
+"   \ }
+"" default/builtin fold
 " set foldenable    " Turn on folding
 " set foldmarker={,} " Fold C style code
 " set foldmethod=marker " Fold on the marker
@@ -126,16 +225,10 @@ let b:match_ignorecase = 1
 let perl_extended_vars=1 " highlight advanced perl vars inside strings
 
 """"""""""""""""""""
-" Pathogen 
-""""""""""""""""""""
-call pathogen#runtime_append_all_bundles() 
-
-""""""""""""""""""""
 " Airline
 """"""""""""""""""""
-let g:airline_powerline_fonts = 1
-let g:airline_theme='papercolor'
 let g:airline_powerline_fonts=1
+let g:airline_theme='papercolor'
 
 """"""""""""""""""""
 " Indent Guides ; enable/disable by \ig
@@ -144,8 +237,60 @@ let g:indent_guides_start_level=2
 let g:indent_guides_guide_size=1
 
 """"""""""""""""""""
+" Supertab
+""""""""""""""""""""
+let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
+
+""""""""""""""""""""
+" Syntastic
+""""""""""""""""""""
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
+let g:syntastic_cpp_compiler = 'clang++'
+let g:syntastic_cpp_compiler_options = ' -std=c++17'
+let g:syntastic_go_checkers=['go', 'govet', 'golint', 'gofmt']
+"let g:syntastic_py_checkers=['flake8']
+
+""""""""""""""""""""
+" Tagbar
+""""""""""""""""""""
+nmap <F8> :TagbarToggle<CR>
+
+""""""""""""""""""""
+" UltiSnips
+""""""""""""""""""""
+"let g:UltiSnipsExpandTrigger="<tab>"
+"let g:UltiSnipsJumpForwardTrigger="<c-b>"
+"let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
+""""""""""""""""""""
+" Neocomplete
+""""""""""""""""""""
+let g:acp_enableAtStartup = 0
+let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_smart_case = 1
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplete#enable_auto_select = 1
+inoremap <expr><C-g>     neocomplete#undo_completion()
+inoremap <expr><C-l>     neocomplete#complete_common_string()
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+
+""""""""""""""""""""
 " Custom Functions
 """"""""""""""""""""
+"The Leader
+"let mapleader="\<Space>"   # default is \
+
 " Select range, then hit :SuperRetab($width) - by p0g and FallingCow
 function! SuperRetab(width) range
     silent! exe a:firstline . ',' . a:lastline . 's/\v%(^ *)@<= {'. a:width .'}/\t/g'
@@ -190,9 +335,26 @@ function! ToggleNERDTreeAndTagbar()
             unlet w:jumpbacktohere
          break
      endif
-    endfor  
+    endfor
 endfunction
 nnoremap <leader>\ :call ToggleNERDTreeAndTagbar()<CR>
+
+" Strips the trailing whitespace from a file
+function! <SID>StripTrailingWhitespaces()
+    " Preparation: save last search, and cursor position.
+    let _s=@/
+    let l = line(".")
+    let c = col(".")
+    " Do the business:
+    %s/\s\+$//e
+    " Clean up: restore previous search history, and cursor position
+    let @/=_s
+    call cursor(l, c)
+endfunction
+nnoremap <leader><Space> :call <SID>StripTrailingWhitespaces()
+
+"replace the word under cursor
+nnoremap <leader>* :%s/\<<c-r><c-w>\>//g<left><left>
 
 """"""""""""""""""""
 " Mappings
@@ -207,7 +369,7 @@ nnoremap <leader>\ :call ToggleNERDTreeAndTagbar()<CR>
 """"""""""""""""""""
 " Useful abbrevs
 """"""""""""""""""""
-iab xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr> 
+iab xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
 
 """"""""""""""""""""
 " Autocommands
@@ -223,6 +385,9 @@ au FileType html set omnifunc=htmlcomplete#CompleteTags
 au FileType css set omnifunc=csscomplete#CompleteCSS
 au FileType xml set omnifunc=xmlcomplete#CompleteTags
 au FileType c set omnifunc=ccomplete#Complete
+au BufNewFile,BufRead,BufEnter *.cpp,*.cc,*.h,*.hpp set omnifunc=omni#cpp#complete#Main
+"au BufRead,BufNewFile *.py,*.c,*.h,*.cpp,*.cc,*.hpp match BadWhitespace /\s\+$/
+"autocmd FileType cpp,c,cxx,h,hpp,python,sh  setlocal cc=80 " set cc=80 only for these files
 
 """"""""""""""""""""
 " Change paging overlap amount from 2 to 5 (+3)

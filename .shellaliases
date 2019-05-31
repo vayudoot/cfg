@@ -1,27 +1,48 @@
+
+########################################################
+# Generic aliases
+########################################################
 alias c='clear'
 alias dovm='ssh root@165.227.20.222'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
+alias h='fc -li 1'   # history with date
+alias dos2lf='dos2unix `find ./ -type f`' # recursive dos2unix in current directory
 
+########################################################
+# Git aliases
+########################################################
 # for top level dotfiles config
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+# no-pager logs
+alias glnp="git --no-pager log --oneline -n30"
+# git branches worked on lately
+alias gitbr="git for-each-ref --sort=authordate --format '%(authordate:iso) %(align:left,25)%(refname:short)%(end) %(subject)' refs/heads"
 
-alias to.downloads='cd ${MYDOWNLOADS}'
-alias to.dropbox='cd ~/Dropbox'
-alias to.docs='cd ${MYDOCUMENTS}'
-alias to.code='cd ${MYCODE}'
+########################################################
+# Network aliases
+########################################################
+alias dnsflush='dscacheutil -flushcache' # flush dns cache
+alias nwcon='lsof -l -i +L -R -V'
+alias nwest='lsof -l -i +L -R -V | grep ESTABLISHED'
+alias nwint="ifconfig en0 | egrep -o '([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)'"
+alias nwext='curl -s http://checkip.dyndns.org/ | sed "s/[a-zA-Z<>/ :]//g"'
 
-# recursive dos2unix in current directory
-alias dos2lf='dos2unix `find ./ -type f`'
+########################################################
+# Exports for various tools
+########################################################
+# for cheat utility
+export DEFAULT_CHEAT_DIR='~/.cheat'
+export CHEATCOLORS=true
+# added by Miniconda3 installer
+#export PATH="/Users/ntrivedi/miniconda3/bin:$PATH"
 
-# Flush the DNS on Mac
-alias dnsflush='dscacheutil -flushcache'
-
-# Show network connections
-# Often useful to prefix with SUDO to see more system level network usage
-alias network.connections='lsof -l -i +L -R -V'
-alias network.established='lsof -l -i +L -R -V | grep ESTABLISHED'
-alias network.internalip="ifconfig en0 | egrep -o '([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)'"
-alias network.externalip='curl -s http://checkip.dyndns.org/ | sed "s/[a-zA-Z<>/ :]//g"'
+########################################################
+# Work related
+########################################################
+export ARAALI_USER=nt
+export WORKSPACE="$HOME/workspace/araali"
+alias ws='cd $WORKSPACE && ls'
+alias bt='cd ~/workspace/araali/tools/build-tools'
 
