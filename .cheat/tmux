@@ -1,0 +1,17 @@
+# Tmux commands
+tmux new -s <name>              Start new session
+tmux a (or at, attach)          Attach to session
+tmux a -t <name>                attach to specific session
+tmux ls                         list sessions
+tmux kill-session -t <name>     kill session
+
+# Session
+
+# Window/tabs
+c                               new window
+,                               rename window
+
+# Pane/splits
+v                               split vertically
+s                               split horizontally
+<space>                         change layout <horiz to vert>

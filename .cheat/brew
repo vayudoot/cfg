@@ -1,0 +1,28 @@
+# Generic commands
+brew --version              Print version
+brew list                   List installed packages
+brew update                 Update brew and cask
+brew doctor                 Check system for potential problems
+brew update                 Fetch latest homebrew and formula
+brew outdated               What's due for upgrades
+
+# Repo commands
+brew tap                    list all current tapped repos
+brew tap <user/repo>[url]   tap a formula repo
+brew untap <user/repo>      remove given tap
+
+# Package commands
+brew install <pkg>          Install a package
+brew upgrade <pkg>          Upgrade a package
+brew info <pkg>             Get info on package
+brew deps <pkg>             List package dependencies
+brew remove <pkg>           Uninstall a package
+brew cleanup <pkg>          remove old version
+brew pin <form>             prevent specific formulae from being upgraded
+brew unpin <form>           Allow formulae to be upgraded
+
+# Cask commands
+brew tap homebrew/cask      Tap cask repo
+brew cask list              list all installed cask
+brew cask install <cask>
+brew cask uninstall <cask>
