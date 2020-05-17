@@ -22,12 +22,13 @@ COMPLETION_WAITING_DOTS="true"
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-plugins=(git)
+plugins=(git zsh_reload dnote)
 
 source $ZSH/oh-my-zsh.sh
 
 source $HOME/.shellfn
 source $HOME/.shellaliases
+source $HOME/miniconda3/etc/profile.d/conda.sh
 
 export CLICOLOR=1
 export PAGER='less'
@@ -71,3 +72,6 @@ prompt_context() {
 }
 
 RPROMPT=""
+
+eval "$(rbenv init -)"
+export PATH="/usr/local/sbin:$PATH"

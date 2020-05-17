@@ -3,7 +3,6 @@
 # Generic aliases
 ########################################################
 alias c='clear'
-alias dovm='ssh root@165.227.20.222'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
@@ -11,10 +10,15 @@ alias h='fc -li 1'   # history with date
 alias dos2lf='dos2unix `find ./ -type f`' # recursive dos2unix in current directory
 
 ########################################################
+# devtools aliases
+########################################################
+alias python='/usr/local/bin/python3'
+
+########################################################
 # Git aliases
 ########################################################
 # for top level dotfiles config
-alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 # no-pager logs
 alias glnp="git --no-pager log --oneline -n30"
 # git branches worked on lately
@@ -32,11 +36,9 @@ alias nwext='curl -s http://checkip.dyndns.org/ | sed "s/[a-zA-Z<>/ :]//g"'
 ########################################################
 # Exports for various tools
 ########################################################
-# for cheat utility
-export DEFAULT_CHEAT_DIR='~/.cheat'
-export CHEATCOLORS=true
 # added by Miniconda3 installer
 #export PATH="/Users/ntrivedi/miniconda3/bin:$PATH"
+export CHEAT_CONFIG_PATH="~/.config/cheat/conf.yml"
 
 ########################################################
 # Work related

@@ -25,7 +25,7 @@ endif
 
 call plug#begin('~/.vim/plugged')
 Plug 'ajh17/spacegray.vim'
-"Plug 'andviro/flake8-vim'
+Plug 'arcticicestudio/nord-vim'
 Plug 'cocopon/iceberg.vim'
 Plug 'derekwyatt/vim-protodef'
 Plug 'ervandew/supertab'
@@ -34,22 +34,24 @@ Plug 'kablamo/vim-git-log'
 Plug 'kevinhui/vim-docker-tools'
 Plug 'Konfekt/FastFold'
 Plug 'majutsushi/tagbar'
-Plug 'scrooloose/syntastic'
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'Shougo/neocomplete.vim'
-"Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'tpope/vim-git', { 'for': 'git' }
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-unimpaired'
 Plug 'Townk/vim-autoclose'
-"Plug 'Valloric/YouCompleteMe'
 Plug 'vim-scripts/indentpython.vim'
-"Plug 'vim-scripts/Conque-GDB'
 Plug 'wesQ3/vim-windowswap'
 Plug 'LucHermitte/lh-vim-lib'
+Plug 'tpope/vim-unimpaired'
+Plug 'scrooloose/syntastic'
+"Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+"
+"Plug 'SirVer/ultisnips'
+"Plug 'Valloric/YouCompleteMe'
+"Plug 'andviro/flake8-vim'
 "Plug 'LucHermitte/VimFold4C'
 "Plug 'WolfgangMehner/c-support'
+"Plug 'vim-scripts/Conque-GDB'
 call plug#end()
 
 """"""""""""""""""""
@@ -93,6 +95,7 @@ set nosol           " leave my cursor where it was
 "set ffs=unix,dos,mac " support all three, in this order
 " set isk+=_,$,@,%,# " none of these should be word dividers, so make them not be
 " set showcmd
+set regexpengine=1
 
 """"""""""""""""""""
 " Files/Backups
@@ -134,10 +137,10 @@ set laststatus=2    " always show the status line
 set ai              " autoindent (filetype indenting instead)
 set nosi            " smartindent (filetype indenting instead)
 set cindent         " do c-style indenting
-set expandtab
-set softtabstop=4   " unify
-set shiftwidth=4    " unify
-set tabstop=4       " real tabs should be 4, but they will show with set list on
+set expandtab       " Expand TABs to spaces
+set softtabstop=2   " unify
+set shiftwidth=2    " unify
+set tabstop=2       " real tabs should be 4, but they will show with set list on
 set copyindent      " but above all -- follow the conventions laid before us
 filetype plugin on " load filetype plugins and indent settings
 set omnifunc=syntaxcomplete#Complete
@@ -155,7 +158,7 @@ set smartcase       " if there are caps, go case-sensitive
 set completeopt=menu,longest,preview " improve the way autocomplete works
 " set nowrap        " do not wrap line
 " set cursorcolumn  " show the current column
-set cursorline
+"set cursorline
 
 """"""""""""""""""""
 " Folding

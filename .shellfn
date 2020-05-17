@@ -1,10 +1,50 @@
+function gitpull() {
+    for i in $(ls -1); do cd $i; echo -e "\e[34m$(pwd)\e[0m"; git config --get remote.origin.url; git pull -q -r; cd ..; done
+}
+
+fd() {   git diff $@ --name-only | fzf -m --ansi --preview "git diff $@ --color=always -- {-1}" }
+
+# $1 is some.html file
+function extractUrl() {
+    # only top level domains. e.g. http://fb.com
+    grep -Eoi '<a [^>]+>' $1 | grep -Eo 'href="[^\"]+"' | grep -Eo '(http|https)://[^/"]+' | sort | uniq
+    # all links and not just TLD. e.g. http://fb/a/b
+    # cat $1 | grep -Eo "(http|https)://[a-zA-Z0-9./?=_-]*" | sort -u | uniq
+}
+
+function duhs() {
+    du -hs * |
+        sed  's/^\([0-9.]*\)\([KMG]*\)/\2 \1\2/
+            s/^K/1/;s/^M/2/;s/^G/3/' |
+            sort -k1 -k2n |
+            cut -c3- |
+            tail -10
+}
+
+function vbox() {
+    port=2222
+    vm_name="$2"
+    case "$1" in
+      "list") VBoxManage list vms ;;
+      "running") VBoxManage list runningvms ;;
+      "start") VBoxManage startvm $vm_name --type headless ;;
+      "stop")  VBoxManage controlvm $vm_name poweroff ;;
+      "pause") VBoxManage controlvm $vm_name savestate ;;
+      "connect") 
+        if [[ "$vm_name" = "ubuntu32" ]]; then
+          port=3322
+        fi
+        ssh -p $port localhost ;;
+      *) vboxmanage --help
+    esac
+}
 
 function matrix() {
 	echo -e "\e[1;40m" ; clear ; characters=$( jot -c 94 33 | tr -d '\n' ) ; while :; do echo $LINES $COLUMNS $(( $RANDOM % $COLUMNS)) $(( $RANDOM % 72 )) $characters ;sleep 0.05; done|awk '{ letters=$5; c=$4; letter=substr(letters,c,1);a[$3]=0;for (x in a) {o=a[x];a[x]=a[x]+1; printf "\033[%s;%sH\033[2;32m%s",o,x,letter; printf "\033[%s;%sH\033[1;37m%s\033[0;0H",a[x],x,letter;if (a[x] >= $1) { a[x]=0; } }}'
 }
 
 brew-essentials() {
-  brew install cheat
+# brew install cheat
   brew install cloc
   brew install cmake
   brew install coreutils
