@@ -1,0 +1,31 @@
+# Tmux commands
+tmux new -s <name>              Start new session
+tmux a (or at, attach)          Attach to session
+tmux a -t <name>                attach to specific session
+tmux ls                         list sessions
+tmux kill-session -t <name>     kill session
+
+# Session
+
+<ctrl-a> followed by -
+# Window/tabs
+c                               new window
+,                               rename window
+d                               detach
+&                               kill window
+p or n                          goto previous or next window
+[0-9]                           goto to specific tab
+
+# Pane/splits
+v                               split vertically
+s                               split horizontally
+<space>                         change layout <horiz to vert>
+q                               show pane num
+x                               kill pane
+z                               toogle zoom
+:resize-pane -[DULR][0-9]       resize pane
+
+# Miscll
+t                               show clock
+?                               list shortcuts
+:                               prompt

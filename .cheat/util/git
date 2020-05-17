@@ -1,0 +1,18 @@
+git rebase br1 <br2>        rebase onto br1 from b2
+git merge br1               merge b1 into current branch
+
+# discard local changes
+git stash                   stash changes and then drop them
+git checkout -- <file>      discard local changes for a file permanently
+git reset --hard            discard all local changes permanently
+
+# bisect
+git bisect start
+git checkout KNOWN_BAD_COMMIT
+git bisect bad
+git checkout KNOWN_GOOD_COMMIT
+git bisect good
+git bisect run ./test.sh    test script returns 0 on success
+git bisect log
+git bisect reset
+

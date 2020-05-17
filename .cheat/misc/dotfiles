@@ -1,0 +1,10 @@
+# 'dotfile' is an alias in .shellaliases
+
+dotfiles status
+dotfiles add .vimrc
+dotfiles commit -m "Add vimrc"
+
+# setup new environment
+git clone --bare https://github.com/vayudoot/cfg.git $HOME/.dotfiles
+alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+dotfiles checkout

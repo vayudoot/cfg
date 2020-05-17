@@ -1,0 +1,7 @@
+conda info              verify conda is installed, check version
+conda update conda      update conda version
+conda install PKG       install a package included in anaconda
+jupyter                 run a installed package 'jupyter'
+conda update PKG        update installed package
+conda install --help    cmd line help
+

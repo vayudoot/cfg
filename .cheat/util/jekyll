@@ -1,0 +1,11 @@
+# if freshly cloned
+git clone https://github.com/vayudoot/vayudoot.org.git
+cd vayudoot.org
+bundle config set path 'vendor/bundle'
+bundle install
+
+# add new post to _posts/YYYY-MM-DD-post.md
+bundle exec jekyll build
+bundle exec jekyll serve (localhost:4000)
+bundle exec jekyll clean
+

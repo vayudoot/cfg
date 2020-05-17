@@ -1,0 +1,14 @@
+
+# Sqlite
+.help
+.open
+.quit
+.databases
+.tables
+.schema <table_name>
+
+## settings
+.show
+.headers on|off
+.separator ", "
+.mode column
