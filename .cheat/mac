@@ -1,5 +1,0 @@
-brew install e2fsprogs                      install
-diskutil list                               list all disks and identifiers>
-diskutil unmountDIsk disk2                  unmount else resource busy
-sudo $(brew --prefix e2fsprogs)/sbin/mkfs.ext3 /dev/disk2s1
-

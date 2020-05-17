@@ -1,9 +1,0 @@
-
-git rebase br1 <br2>        rebase onto br1 from b2
-git merge br1               merge b1 into current branch
-
-# discard local changes
-git stash                   stash changes and then drop them
-git checkout -- <file>      discard local changes for a file permanently
-git reset --hard            discard all local changes permanently
-
