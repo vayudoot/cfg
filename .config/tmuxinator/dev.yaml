@@ -1,0 +1,25 @@
+name: dev
+root: ~/
+
+windows:
+  - zsh:
+      layout: 1ba4,178x42,0,0{89x42,0,0[89x21,0,0,0,89x20,0,22,5],88x42,90,0,4}
+      panes:
+        - uptime
+        - 
+        - 
+  - zsh:
+      layout: main-vertical
+      panes:
+        - cd ~/repos/ntrivedi; clear
+  - zsh:
+      layout: main-vertical
+      panes:
+        - 
+  - zsh:
+      layout: main-vertical
+      panes:
+        - run_multi_cmds:
+          - cd /tmp
+          - clear
+

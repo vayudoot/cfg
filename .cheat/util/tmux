@@ -29,3 +29,6 @@ z                               toogle zoom
 t                               show clock
 ?                               list shortcuts
 :                               prompt
+
+# tmuxinator
+tmuxinator start dev            where dev is in .config/tmuxinator/dev.yaml

@@ -74,4 +74,4 @@ prompt_context() {
 RPROMPT=""
 
 eval "$(rbenv init -)"
-export PATH="/usr/local/sbin:$PATH"
+export PATH="/usr/local/bin:/usr/local/sbin:$PATH"

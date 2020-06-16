@@ -5,13 +5,31 @@
 :w              write file
 :w {file}       write new file
 :x              write file and exit
-:sp <file>      open new file in vertical split window
-:vp <file>      open new file in horizontal split window
 
-# Movement
+[count][operator][text object / motion]
+# Operators
+u               undo
+ctrl-r          redo
+c               change
+~               swap case
+gu/gU           make lower/upper case
+>               indent
+yy              yank (copy) a line
+y{motion}       yank text that {motion} moves over
+p               paste after cursor
+P               paste before cursor
+<Del> or x      delete character under cursor
+X               delete character just before cursor
+dw              delete word from cursor until end of word
+dd              delete a line
+d{motion}       delete text that {motion} moves over
+f               find
+
+# Motion
     k
   h   l         basic motion
     j
+prepent [count] in any of following
 w               next start of word
 W               next start of whitespace-delimited word
 e               next end of word
@@ -22,12 +40,32 @@ B               previous start of whitespace-delimited word
 $               end of line
 gg              go to first line in file
 G               go to end of file
-gk      move down one displayed line
-gj      move up one displayed line
+gk              move down one displayed line
+gj              move up one displayed line
+%               match paren/bracket
+]m              go to beginning of next method
+
+# Text object
+# x can be 'd', 'i' (inside, e.g. ci" = change inside "")"
+xaw             'x' a word (x could be d - delete)
+xap             'x' a paragraph
+xab             'x' a block
+xat             'x' a tag block
+xi_             'x' inside whatever
 
 # Buffers
 ls              list all buffers
 b <num>         switch to open buffer
+
+# marks
+m{char}         mark a position with {char}
+`{char}         jump to the {char} mark
+
+# jumps
+ctrl-O/ctrl-I   cycle through :jumps
+g;/g,           cycle through changes
+gd              go to local definition (with cursor on method name)
+gf              go to file (with cursor on filename)
 
 # Insertion
 #   To exit from insert mode use Esc or Ctrl-C
@@ -40,19 +78,6 @@ o               create a new line under the cursor
 O               create a new line above the cursor
 R               enter insert mode but replace instead of inserting chars
 :r {file}       insert from file
-
-# Editing
-u               undo
-ctrl-r          redo
-yy              yank (copy) a line
-y{motion}       yank text that {motion} moves over
-p               paste after cursor
-P               paste before cursor
-<Del> or x      delete character under cursor
-X               delete character just before cursor
-dw              delete word from cursor until end of word
-dd              delete a line
-d{motion}       delete text that {motion} moves over
 
 # Search and replace with the `:substitute` (aka `:s`) command
 :s/foo/bar/ replace the first match of 'foo' with 'bar' on the current line only
@@ -70,10 +95,25 @@ d{motion}       delete text that {motion} moves over
 
 # Outside
 .w !<cmd>   send current line to <cmd>. e,g, .w !zsh
+:bo term    spawn a private term buffer at bottom
+:vert term  spawn a private term buffer at side
+:!zsh        spawn private term buffer
 
 # Binding
-# qq               " record macro to register q
-# o                " insert empty line below cursor
-# esc              " cmd-mode
-# q                " end recording
-#   Use @q to execute macro
+q{char}          " record macro to register {character}
+o                " insert empty line below cursor
+esc              " cmd-mode
+q                " end recording
+#   Use @{char} to execute macro
+
+# Buffer, windows, tabs
+# Buffer => files, Window => view
+:sp <file>      open new file in vertical split window
+:vp <file>      open new file in horizontal split window
+:30vs .         open 30char vertical split of current dir
+:args **/*.cpp  add all local cpp files to args
+
+# cscope
+# Put http://cscope.sourceforge.net/cscope_maps.vim in .vim/plugin
+:cscope add cscope_db
+
