@@ -24,9 +24,12 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/plugged')
+" Colors
 Plug 'ajh17/spacegray.vim'
 Plug 'arcticicestudio/nord-vim'
 Plug 'cocopon/iceberg.vim'
+Plug 'sts10/vim-pink-moon'
+" Utils
 Plug 'derekwyatt/vim-protodef'
 Plug 'ervandew/supertab'
 Plug 'fatih/vim-go'
@@ -61,9 +64,9 @@ let g:solarized_termcolors = 256
 let g:solarized_termtrans = 1
 set background=dark
 "colorscheme solarized8_flat
-
 "silent! colorscheme slate
 silent! colorscheme iceberg
+highlight Comment cterm=italic
 " Transparent background
 function! s:transparent() abort
   highlight Normal ctermbg=NONE guibg=NONE
