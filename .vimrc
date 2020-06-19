@@ -66,7 +66,6 @@ set background=dark
 "colorscheme solarized8_flat
 "silent! colorscheme slate
 silent! colorscheme iceberg
-highlight Comment cterm=italic
 " Transparent background
 function! s:transparent() abort
   highlight Normal ctermbg=NONE guibg=NONE
@@ -402,4 +401,6 @@ au BufNewFile,BufRead,BufEnter *.cpp,*.cc,*.h,*.hpp set omnifunc=omni#cpp#comple
 """"""""""""""""""""
 nnoremap <C-f> <C-f>3<C-y> "  Make overlap 3 extra on control-f
 nnoremap <C-b> <C-b>3<C-e> "  Make overlap 3 extra on control-b
+
+highlight Comment cterm=italic
 
