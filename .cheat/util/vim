@@ -1,3 +1,8 @@
+# customization
+,               leader (default is \)
+,*              replace word under cursor
+,<sp>           strip trailing whitespaces
+
 # File management
 :e              reload file
 :q              quit
@@ -54,8 +59,11 @@ xat             'x' a tag block
 xi_             'x' inside whatever
 
 # Buffers
-ls              list all buffers
-b <num>         switch to open buffer
+:ls              list all buffers
+:b <num>         switch to open buffer
+:bd              delete current buffer
+:bw              wipe current buffer
+:2bd             delete second buffer
 
 # marks
 m{char}         mark a position with {char}

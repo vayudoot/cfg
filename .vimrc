@@ -29,6 +29,11 @@ Plug 'ajh17/spacegray.vim'
 Plug 'arcticicestudio/nord-vim'
 Plug 'cocopon/iceberg.vim'
 Plug 'sts10/vim-pink-moon'
+Plug 'rakr/vim-one'
+let g:cpp_class_scope_highlight = 1
+let g:cpp_member_variable_highlight = 1
+let g:cpp_member_variable_highlight = 1
+let g:cpp_member_variable_highlight = 1
 " Utils
 Plug 'derekwyatt/vim-protodef'
 Plug 'ervandew/supertab'
@@ -42,11 +47,14 @@ Plug 'honza/vim-snippets'
 Plug 'tpope/vim-git', { 'for': 'git' }
 Plug 'tpope/vim-fugitive'
 Plug 'Townk/vim-autoclose'
-Plug 'vim-scripts/indentpython.vim'
+"Plug 'vim-scripts/indentpython.vim'
+Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 Plug 'wesQ3/vim-windowswap'
 Plug 'LucHermitte/lh-vim-lib'
 Plug 'tpope/vim-unimpaired'
 Plug 'scrooloose/syntastic'
+Plug 'godlygeek/tabular' "needed for vim-markdown
+Plug 'plasticboy/vim-markdown'
 "Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 "
 "Plug 'SirVer/ultisnips'
@@ -63,9 +71,7 @@ call plug#end()
 let g:solarized_termcolors = 256
 let g:solarized_termtrans = 1
 set background=dark
-"colorscheme solarized8_flat
-"silent! colorscheme slate
-silent! colorscheme iceberg
+silent! colorscheme pink-moon
 " Transparent background
 function! s:transparent() abort
   highlight Normal ctermbg=NONE guibg=NONE
@@ -82,7 +88,7 @@ function! s:transparent() abort
   highlight GitGutterChangeDelete ctermbg=NONE guibg=NONE
   highlight GitGutterDelete ctermbg=NONE guibg=NONE
 endfunction
-call s:transparent()
+"call s:transparent()
 set secure
 
 """"""""""""""""""""
@@ -172,7 +178,7 @@ set foldmethod=syntax " Fold on the marker
 let g:fastfold_savehook = 1
 let g:fastfold_fold_command_suffixes =  ['x','X','a','A','o','O','c','C']
 let g:fastfold_fold_movement_commands = [']z', '[z', 'zj', 'zk']
-let g:markdown_folding = 1
+"let g:markdown_folding = 1
 let g:tex_fold_enabled = 1
 let g:vimsyn_folding = 'af'
 let g:xml_syntax_folding = 1
@@ -184,6 +190,9 @@ let g:perl_fold_blocks = 1
 let g:r_syntax_folding = 1
 let g:rust_fold = 1
 let g:php_folding = 1
+" for vim-markdown
+let g:vim_markdown_folding_style_pythonic = 1
+let g:vim_markdown_new_list_item_indent = 2
 "" VimFold4C
 "let g:fold_options = {
 "   \ 'fallback_method' : { 'line_threshold' : 2000, 'method' : 'indent' },
@@ -293,8 +302,8 @@ inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 """"""""""""""""""""
 " Custom Functions
 """"""""""""""""""""
-"The Leader
-"let mapleader="\<Space>"   # default is \
+"The Leader, default is \
+let mapleader=","
 
 " Select range, then hit :SuperRetab($width) - by p0g and FallingCow
 function! SuperRetab(width) range
@@ -403,4 +412,7 @@ nnoremap <C-f> <C-f>3<C-y> "  Make overlap 3 extra on control-f
 nnoremap <C-b> <C-b>3<C-e> "  Make overlap 3 extra on control-b
 
 highlight Comment cterm=italic
-
+" to make background transparent
+"hi! Normal ctermbg=NONE guibg=NONE
+"hi! NonText ctermbg=NONE guibg=NONE guifg=NONE ctermfg=NONE
+set conceallevel=2 "hide links
