@@ -1,4 +1,3 @@
-
 ########################################################
 # Generic aliases
 ########################################################
@@ -12,13 +11,13 @@ alias dos2lf='dos2unix `find ./ -type f`' # recursive dos2unix in current direct
 ########################################################
 # devtools aliases
 ########################################################
-alias python='/usr/local/bin/python3'
+# alias python='/usr/local/bin/python3'
 
 ########################################################
 # Git aliases
 ########################################################
 # for top level dotfiles config
-alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 # no-pager logs
 alias glnp="git --no-pager log --oneline -n30"
 # git branches worked on lately
@@ -36,15 +35,9 @@ alias nwext='curl -s http://checkip.dyndns.org/ | sed "s/[a-zA-Z<>/ :]//g"'
 ########################################################
 # Exports for various tools
 ########################################################
-# added by Miniconda3 installer
-#export PATH="/Users/ntrivedi/miniconda3/bin:$PATH"
 export CHEAT_CONFIG_PATH="~/.config/cheat/conf.yml"
 
 ########################################################
 # Work related
 ########################################################
-export ARAALI_USER=nt
-export WORKSPACE="$HOME/workspace/araali"
-alias ws='cd $WORKSPACE && ls'
-alias bt='cd ~/workspace/araali/tools/build-tools'
 
