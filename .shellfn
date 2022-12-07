@@ -1,3 +1,4 @@
+# for $HOME/repos kind of directory
 function gitpull() {
     for i in $(ls -1); do cd $i; echo -e "\e[34m$(pwd)\e[0m"; git config --get remote.origin.url; git pull -q -r; cd ..; done
 }
@@ -12,6 +13,7 @@ function extractUrl() {
     # cat $1 | grep -Eo "(http|https)://[a-zA-Z0-9./?=_-]*" | sort -u | uniq
 }
 
+# better du
 function duhs() {
     du -hs * |
         sed  's/^\([0-9.]*\)\([KMG]*\)/\2 \1\2/
@@ -21,6 +23,7 @@ function duhs() {
             tail -10
 }
 
+# helper for virtualbox
 function vbox() {
     port=2222
     vm_name="$2"
@@ -39,12 +42,15 @@ function vbox() {
     esac
 }
 
+# Matrix type term
 function matrix() {
 	echo -e "\e[1;40m" ; clear ; characters=$( jot -c 94 33 | tr -d '\n' ) ; while :; do echo $LINES $COLUMNS $(( $RANDOM % $COLUMNS)) $(( $RANDOM % 72 )) $characters ;sleep 0.05; done|awk '{ letters=$5; c=$4; letter=substr(letters,c,1);a[$3]=0;for (x in a) {o=a[x];a[x]=a[x]+1; printf "\033[%s;%sH\033[2;32m%s",o,x,letter; printf "\033[%s;%sH\033[1;37m%s\033[0;0H",a[x],x,letter;if (a[x] >= $1) { a[x]=0; } }}'
 }
 
+# For mac brew install
 brew-essentials() {
-# brew install cheat
+  brew update; brew upgrade; brew cleanup
+  #brew install cheat
   brew install cloc
   brew install cmake
   brew install coreutils
@@ -60,9 +66,21 @@ brew-essentials() {
   brew install pstree
   brew install sqlite
   brew install ssh-copy-id
-#brew install tmux
-#brew install vim
+  #brew install tmux
+  #brew install vim
   brew install watch
-#brew install zsh
+  #brew install zsh
 }
 
+# to identify host type
+hosttype() {
+  unameOut="$(uname -s)"
+  case "${unameOut}" in
+    Linux*)     machine=Linux;;
+    Darwin*)    machine=Mac;;
+    CYGWIN*)    machine=Cygwin;;
+    MINGW*)     machine=MinGw;;
+    *)          machine="UNKNOWN:${unameOut}"
+  esac
+  echo ${machine}
+}
