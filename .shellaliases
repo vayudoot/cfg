@@ -11,7 +11,7 @@ alias dos2lf='dos2unix `find ./ -type f`' # recursive dos2unix in current direct
 ########################################################
 # devtools aliases
 ########################################################
-# alias python='/usr/local/bin/python3'
+alias vi="nvim"
 
 ########################################################
 # Git aliases
