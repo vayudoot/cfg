@@ -36,6 +36,9 @@ alias nwext='curl -s http://checkip.dyndns.org/ | sed "s/[a-zA-Z<>/ :]//g"'
 # Exports for various tools
 ########################################################
 export CHEAT_CONFIG_PATH="~/.config/cheat/conf.yml"
+export XDG_CONFIG_HOME=$HOME/.config
+export XDG_CACHE_HOME=$HOME/.cache
+export XDG_DATA_HOME=$HOME/.local/share
 
 ########################################################
 # Work related

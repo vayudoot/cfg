@@ -1,15 +1,35 @@
+## Zsh specific
 
-ZSH_THEME="tonotdo"
+export ZDOTDIR=$HOME/.config/zsh
+export ZPLUGINDIR=$ZDOTDIR/plugins
+source $ZDOTDIR/zsh-functions
 
-source $HOME/.shellfn
-source $HOME/.shellaliases
+autoload -Uz colors && colors
+autoload -U compinit && compinit
 
-export CLICOLOR=1
-export PAGER='less'
-export EDITOR='vim'
+setopt HIST_IGNORE_DUPS
+HISTFILE=~/.zsh_history
+HISTSIZE="128000"
+SAVEHIST="128000"
 
-unsetopt correct_all
+zsh_add_file "zsh-prompt"
 
+# plugins
+zsh_add_plugin "romkatv/zsh-defer"
+zsh_add_plugin "zsh-users/zsh-autosuggestions"
+zsh_add_plugin "zsh-users/zsh-history-substring-search"
+zsh_add_plugin "zsh-users/zsh-completions"
+zsh_add_plugin "hlissner/zsh-autopair"
+zsh_add_plugin "zap-zsh/supercharge"
+zsh_add_plugin "zap-zsh/vim"
+zsh_add_plugin "zap-zsh/zap-prompt"
+zsh_add_plugin "zap-zsh/fzf"
+zsh_add_plugin "zap-zsh/exa"
+# load this last
+zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
+
+# keybinds
+bindkey '^ ' autosuggest-accept
 # http://superuser.com/questions/446594/separate-up-arrow-lookback-for-local-and-global-zsh-history
 bindkey "^[OA" up-line-or-local-history
 bindkey "^[OB" down-line-or-local-history
@@ -29,6 +49,17 @@ zle -N down-line-or-local-history
 bindkey "^[[1;5A" up-line-or-history    # [CTRL] + Cursor up
 bindkey "^[[1;5B" down-line-or-history  # [CTRL] + Cursor down
 
-if [ ! $TERM = dumb ]; then
-     # list of plugins from zsh I use
-fi
+powerline-daemon -q
+#[ -f /usr/share/powerline/bindings/zsh/powerline.zsh ] && source /usr/share/powerline/bindings/zsh/powerline.zsh
+[ -f /usr/share/fzf/completion.zsh ] && source /usr/share/fzf/completion.zsh
+[ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh
+
+## Generic
+source $HOME/.shellfn
+source $HOME/.shellaliases
+
+export CLICOLOR=1
+export PAGER='less'
+export EDITOR='vim'
+
+export PATH="$HOME/.local/bin":$PATH
