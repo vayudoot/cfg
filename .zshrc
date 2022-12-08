@@ -3,7 +3,6 @@ ZSH_THEME="tonotdo"
 
 source $HOME/.shellfn
 source $HOME/.shellaliases
-source $HOME/miniconda3/etc/profile.d/conda.sh
 
 export CLICOLOR=1
 export PAGER='less'
