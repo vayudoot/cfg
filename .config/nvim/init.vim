@@ -4,18 +4,10 @@
 call plug#begin()
 
 " Core (treesitter, nvim-lspconfig, nvim-cmp, nvim-telescope, nvim-lualine)
-Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
-Plug 'nvim-treesitter/playground'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'hrsh7th/cmp-buffer'
-Plug 'hrsh7th/cmp-path'
-Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
-Plug 'hrsh7th/cmp-vsnip'
-Plug 'hrsh7th/vim-vsnip'
-Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
-Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'nvim-lualine/lualine.nvim'
@@ -40,13 +32,15 @@ Plug 'wellle/context.vim'
 Plug 'antoinemadec/FixCursorHold.nvim'
 
 " Functionalities - Python
-Plug 'psf/black', { 'branch': 'stable' }
+"Plug 'psf/black', { 'branch': 'stable' }
 Plug 'heavenshell/vim-pydocstring'
 
 " Aesthetics - Colorschemes
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'zaki/zazen'
 Plug 'yuttie/hydrangea-vim'
+Plug 'sts10/vim-pink-moon'
+Plug 'rakr/vim-one'
 
 " Aesthetics - Others
 Plug 'junegunn/rainbow_parentheses.vim'
@@ -118,13 +112,6 @@ set termguicolors
 
 """ Core plugin configuration (vim)
 
-" Treesitter
-augroup DraculaTreesitterSourcingFix
-    autocmd!
-    autocmd ColorScheme dracula runtime after/plugin/dracula.vim
-    syntax on
-augroup end
-
 " nvim-cmp
 set completeopt=menu,menuone,noselect
 
@@ -159,23 +146,6 @@ autocmd BufLeave term://* stopinsert
 let g:python3_host_prog = '~/.config/nvim/env/bin/python3'
 let g:pydocstring_doq_path = '~/.config/nvim/env/bin/doq'
 
-""" Core plugin configuration (lua)
-lua << EOF
-servers = {
-    'pyright',
-    --'tsserver', -- uncomment for typescript. See https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md for other language servers
-}
-require('treesitter-config')
-require('nvim-cmp-config')
-require('lspconfig-config')
-require('telescope-config')
-require('lualine-config')
-require('nvim-tree-config')
-require('diagnostics')
-EOF
-
-""" Custom Functions
-
 " Trim Whitespaces
 function! TrimWhitespace()
     let l:save = winsaveview()
@@ -208,9 +178,6 @@ nmap <leader>$v <C-w>v<C-w>l:terminal<CR>:set nonumber<CR><S-a>
 autocmd Filetype python nmap <leader>d <Plug>(pydocstring)
 autocmd FileType python nmap <leader>p :Black<CR>
 
-" Solidity (requires: npm install --save-dev prettier prettier-plugin-solidity)
-autocmd Filetype solidity nmap <leader>p :0,$!npx prettier %<CR>
-
 " Telescope mappings
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
@@ -218,4 +185,3 @@ nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 nnoremap <leader>fc <cmd>Telescope colorscheme<cr>
 nnoremap <leader>f/ <cmd>Telescope current_buffer_fuzzy_find<cr>
-
