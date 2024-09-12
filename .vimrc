@@ -3,7 +3,16 @@
 """"""""""""""""""""
 set nocompatible    " get out of horrible vi-compatible mode
 set termguicolors
-set term=xterm-256color
+" GUI options
+if has('win32')
+    set guifont=Consolas:h11
+elseif exists("$WSLENV")
+    set guifont=Consolas\ 13
+    set belloff=all
+    :nmap p :pu<CR>
+else
+    set term=xterm-256color
+endif
 set t_Co=256
 highlight ColorColumn ctermbg=101
 
@@ -25,7 +34,6 @@ endif
 
 call plug#begin('~/.vim/plugged')
 " Colors
-Plug 'ajh17/spacegray.vim'
 Plug 'arcticicestudio/nord-vim'
 Plug 'cocopon/iceberg.vim'
 Plug 'sts10/vim-pink-moon'
@@ -48,7 +56,7 @@ Plug 'tpope/vim-git', { 'for': 'git' }
 Plug 'tpope/vim-fugitive'
 Plug 'Townk/vim-autoclose'
 "Plug 'vim-scripts/indentpython.vim'
-Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
+"Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 Plug 'wesQ3/vim-windowswap'
 Plug 'LucHermitte/lh-vim-lib'
 Plug 'tpope/vim-unimpaired'
